@@ -70,6 +70,19 @@ canvas {
   justify-content: center;
 }
 
+.bottom-text {
+  text-align: center;
+  font-size: 0.5em;
+
+  a {
+    color: inherit;
+
+    &:hover {
+      color: rgb(115, 0, 255);
+    }
+  }
+}
+
 @keyframes swatch-in {
   from {
     opacity: 0;

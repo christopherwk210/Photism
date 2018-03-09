@@ -83,20 +83,27 @@ function getImagePalette(img) {
 
   let imageNotes = [];
 
+  // Get swatches
   Vibrant.from(img).getPalette().then(palette => {
+    window.noteConfig = {};
     let existingNotes = [];
+
     for (let swatch in palette) {
       if (palette.hasOwnProperty(swatch) && palette[swatch]) {
+        // Get color values
         let color = palette[swatch];
         let rgbstr = `rgb(${color.r}, ${color.g}, ${color.b})`;
 
+        // Add color swatch element
         let colorElement = $('<div>').addClass('swatch');
         colorElement.css('background', rgbstr);
         paletteContainer.append(colorElement);
 
+        // Determine note
         let note = Photism.colorToNote(color.r, color.g, color.b);
         imageNotes.push(note);
 
+        // Save selected note state
         let finalNote = note + (~existingNotes.indexOf(note) ? '5' : '4');
         window.noteConfig[finalNote] = {
           enable: () => {
@@ -114,6 +121,7 @@ function getImagePalette(img) {
           color
         };
 
+        // Allow note toggling
         colorElement.click(() => {
           if (window.noteConfig[finalNote].enabled) {
             window.noteConfig[finalNote].disable();
@@ -178,6 +186,9 @@ function drawImageFit(img, canvas, ctx) {
   } else if (newWidth > canvasWidth) {
     newHeight = canvasWidth / ratio;
     newWidth = canvasWidth;
+    top = -(newHeight - canvasHeight) / 2;
+  } else {
+    left = -(newWidth - canvasWidth) / 2;
     top = -(newHeight - canvasHeight) / 2;
   }
   

@@ -4,7 +4,7 @@
   "description": "An experiment in generating sound from prominent colors in pictures.",
   "scripts": {
     "start": "parcel src/index.html --out-dir=tmp",
-    "build": "parcel build src/index.html --out-dir=docs"
+    "build": "parcel build src/index.html --out-dir=docs --public-url='./'"
   },
   "repository": {
     "type": "git",

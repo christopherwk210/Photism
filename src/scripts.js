@@ -102,9 +102,12 @@ function getImagePalette(img) {
         // Determine note
         let note = Photism.colorToNote(color.r, color.g, color.b);
         imageNotes.push(note);
+        let finalNote = note + (~existingNotes.indexOf(note) ? '5' : '4');
+
+        // Save note to element
+        colorElement.attr('data-note', finalNote);        
 
         // Save selected note state
-        let finalNote = note + (~existingNotes.indexOf(note) ? '5' : '4');
         window.noteConfig[finalNote] = {
           enable: () => {
             window.noteConfig[finalNote].enabled = true;

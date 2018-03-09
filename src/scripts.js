@@ -2,8 +2,11 @@ import 'babel-polyfill';
 import $ from 'jquery';
 import * as Vex from 'vexflow';
 import * as Vibrant from 'node-vibrant';
+import * as Pizzicato from 'pizzicato';
 
 import { Photism } from './photism/photism';
+
+let waves = [];
 
 window.noteConfig = {};
 
@@ -40,6 +43,52 @@ $(document).ready(() => {
     reader.readAsDataURL(e.target.files[0]);
   });
 });
+
+/**
+ * Creates a Pz sine wave
+ * @param {*} note 
+ */
+function createWave(note) {
+  let sineWave = new Pizzicato.Sound({ 
+    source: 'wave',
+    options: {
+      frequency: getFrequency(note)
+    }
+  });
+  
+  sineWave.attack = 0.5;
+  sineWave.release = 0.25;
+
+  return sineWave;
+}
+
+/**
+ * Returns a frequency for a given note, source:
+ * https://gist.github.com/stuartmemo/3766449
+ * @param {string} note 
+ */
+function getFrequency(note) {
+  let notes = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#'],
+      octave,
+      keyNumber;
+
+  if (note.length === 3) {
+      octave = note.charAt(2);
+  } else {
+      octave = note.charAt(1);
+  }
+
+  keyNumber = notes.indexOf(note.slice(0, -1));
+
+  if (keyNumber < 3) {
+      keyNumber = keyNumber + 12 + ((octave - 1) * 12) + 1; 
+  } else {
+      keyNumber = keyNumber + ((octave - 1) * 12) + 1; 
+  }
+
+  // Return frequency of note
+  return 440 * Math.pow(2, (keyNumber- 49) / 12);
+}
 
 /**
  * Renders notation for the given notes

@@ -154,7 +154,7 @@ function getImagePalette(img) {
         let finalNote = note + (~existingNotes.indexOf(note) ? '5' : '4');
 
         // Save note to element
-        colorElement.attr('data-note', finalNote);        
+        colorElement.attr('data-note', finalNote);
 
         // Save selected note state
         window.noteConfig[finalNote] = {
@@ -162,11 +162,15 @@ function getImagePalette(img) {
             window.noteConfig[finalNote].enabled = true;
             window.noteConfig[finalNote].element.addClass('active');
             renderActiveNotes();
+            createWavesForActiveNotes();
+            createPlayButton();
           },
           disable: () => {
             window.noteConfig[finalNote].enabled = false;
             window.noteConfig[finalNote].element.removeClass('active');
             renderActiveNotes();
+            createWavesForActiveNotes();
+            createPlayButton();
           },
           enabled: false,
           element: colorElement,
@@ -196,6 +200,42 @@ function getImagePalette(img) {
       }
     }
   });
+}
+
+function createPlayButton() {
+  $('.play-container').empty();
+
+  let button = $('<button>').text('play');
+  button.click(() => {
+    if (button.text() === 'play') {
+      button.text('stop');
+      waves.forEach(wave => {
+        wave.play();
+      });
+    } else {
+      button.text('play');
+      waves.forEach(wave => {
+        wave.stop();
+      });
+    }
+  });
+
+  $('.play-container').append(button);
+}
+
+/**
+ * Creates Pz waves for every active note
+ */
+function createWavesForActiveNotes() {
+  waves.forEach(wave => wave.stop());
+  waves = [];
+  for (let note in window.noteConfig) {
+    if (window.noteConfig.hasOwnProperty(note)) {
+      if (window.noteConfig[note].enabled) {
+        waves.push(createWave(note));
+      }
+    }
+  }
 }
 
 /**

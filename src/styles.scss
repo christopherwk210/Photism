@@ -70,6 +70,24 @@ canvas {
   justify-content: center;
 }
 
+.play-container {
+  text-align: center;
+  margin-bottom: 0.5em;
+
+  button {
+    background: none;
+    border: none;
+    font-size: inherit;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 0.75em;
+
+    &:hover {
+      background: rgba(0,0,0,0.2);
+    }
+  }
+}
+
 .bottom-text {
   text-align: center;
   font-size: 0.5em;

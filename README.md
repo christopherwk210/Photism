@@ -16,7 +16,7 @@ Run with `npm start` and build with `npm run build`.
 ## How does it work?
 First, the prominant colors are extracted from the image you upload. These colors are then compared to the colors that are resonant with the 12 note letters, which can be found [here](http://www.flutopedia.com/sound_color.htm). The notes that go with the closest colors found are then rendered on a staff.
 
-For a more detailed examination of this implementation and some of the concepts at work here, you can check out my article on this project here (not yet available).
+For a more detailed examination of this implementation and some of the concepts at work here, you can check out my article on this project [here](https://medium.com/@topherlicious/photism-making-music-from-pictures-3a413eff289f).
 
 ## License
 MIT

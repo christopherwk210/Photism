@@ -1,3 +1,4 @@
+// Note/color relationships derived from http://www.flutopedia.com/sound_color.htm
 import noteMap from './noteMap';
 
 /**

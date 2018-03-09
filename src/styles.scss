@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300');
+
+html, body {
+  overflow: hidden;
+  height: 100%;
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 24px;
+}
+
+main {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+canvas {
+  position: relative;
+  display: block;
+  height: 400px;
+  width: 400px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  margin: 0 auto;
+  margin-top: 1em;
+  background-color: rgba(0,0,0,0.2);
+}
+
+#palette {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1em;
+
+  .swatch {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+    animation: 'swatch-in' 0.4s;
+    border: 2px solid white;
+    cursor: pointer;
+
+    &.active {
+      border: 2px solid black;
+    }
+  }
+}
+
+#notation {
+  display: flex;
+  justify-content: center;
+}
+
+@keyframes swatch-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

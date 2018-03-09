@@ -1,0 +1,29 @@
+{
+  "name": "photism",
+  "version": "1.0.0",
+  "description": "An experiment in generating sound from prominent colors in pictures.",
+  "scripts": {
+    "start": "parcel src/index.html --out-dir=tmp",
+    "build": "parcel build src/index.html --out-dir=docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/christopherwk210/Photism.git"
+  },
+  "keywords": [],
+  "author": "Chris Anselmo <christopherwk210@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/christopherwk210/Photism/issues"
+  },
+  "homepage": "https://github.com/christopherwk210/Photism#readme",
+  "dependencies": {
+    "autoprefixer": "^8.1.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "jquery": "^3.3.1",
+    "node-vibrant": "^3.0.0",
+    "parcel-bundler": "^1.6.2",
+    "vexflow": "^1.2.84"
+  }
+}

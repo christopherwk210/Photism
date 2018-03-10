@@ -210,6 +210,7 @@ function createPlayButton() {
     if (button.text() === 'play') {
       button.text('stop');
       waves.forEach(wave => {
+        wave.volume = 0.5;
         wave.play();
       });
     } else {
@@ -271,14 +272,16 @@ function drawImageFit(img, canvas, ctx) {
   let left = 0;
   let top = 0;
 
-  if (newHeight > canvasHeight) {
-    newHeight = canvasHeight;
-    newWidth = canvasHeight * ratio;
-    left = -(newWidth - canvasWidth) / 2;
-  } else if (newWidth > canvasWidth) {
-    newHeight = canvasWidth / ratio;
-    newWidth = canvasWidth;
-    top = -(newHeight - canvasHeight) / 2;
+  if (newHeight > canvasHeight || newWidth > canvasWidth) {
+    if (newHeight > canvasHeight) {
+      newHeight = canvasHeight;
+      newWidth = canvasHeight * ratio;
+      left = -(newWidth - canvasWidth) / 2;
+    } else if (newWidth > canvasWidth) {
+      newHeight = canvasWidth / ratio;
+      newWidth = canvasWidth;
+      top = -(newHeight - canvasHeight) / 2;
+    }
   } else {
     left = -(newWidth - canvasWidth) / 2;
     top = -(newHeight - canvasHeight) / 2;
